@@ -33,10 +33,10 @@ The music is a 3-part reduction for the SID of J.S. Bach's "little" fugue in G m
 ### How to build the game
 To build the game for UNIX\GNU linux install SDL2 library and type:
 ~~~~
-make PLATFORM=UNIX
+make CPU=host
 ~~~~
 
 To build for the Commodore 64, make sure you have CC65 installed and type:
 ~~~~
-make PLATFORM=C64
+make CPU=c64
 ~~~~

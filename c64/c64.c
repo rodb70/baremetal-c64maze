@@ -1,13 +1,14 @@
-#include<6502.h>
-#include<conio.h>
+#include <6502.h>
+#include <conio.h>
 #include <c64maze.h>
-#include"vic_font.h"
-#include"sid_tune.h"
-#include"C64.h"
+#include "port.h"
+#include "vic_font.h"
+#include "sid_tune.h"
+
 /* local definitions */
 #define VIC_II_START 53248U
 #define VIC_II_Y_SCROLL 53265U
-#define     BMM 32  // Monochromatic high resolution mode
+#define BMM 32  // Monochromatic high resolution mode
 #define VIC_II_SCREEN_CHAR 53272U
 #define SCREEN_BORDER 53280U
 
@@ -536,7 +537,7 @@ void port_music_off(void)
     POKE(0xD418,0);
 }
 void port_music_on(void)
-{ 
+{
     POKE(0xD418,15);
 }
 

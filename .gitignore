@@ -6,3 +6,4 @@ c64maze.o
 .cproject
 .project
 .settings
+/build/

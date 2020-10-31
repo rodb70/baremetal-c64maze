@@ -5,7 +5,8 @@
 #define a_abs(a) ((a)>0 ? (a):(-a))
 #define a_max(a,b) (((a)>(b))?(a):(b))
 #define a_sign(a) ((a)>0?1:((a)==0?0:(-1)))
-#define TRUE  0xFF
+
+#define TRUE  0x1
 #define FALSE 0x00
 
 #if (P_CURRENT == P_C64)
@@ -14,10 +15,10 @@
 #define STEPSIZEX (15)
 #define STEPSIZEY (15)
 #elif (P_CURRENT == P_UNIX)
-#define SIZEX (200 * 5)
-#define SIZEY (199 * 5)
-#define STEPSIZEX (15 * 5)
-#define STEPSIZEY (15 * 5)
+#define SIZEX (200)
+#define SIZEY (199)
+#define STEPSIZEX (15)
+#define STEPSIZEY (15)
 #elif P_CURRENT == P_STM_128x64
 #define SIZEX 128
 #define SIZEY 64
@@ -31,7 +32,8 @@
 extern unsigned char style;
 
 /* dynamic display bounds */
-typedef struct {
+typedef struct
+{
     unsigned short szx;
     unsigned short szy;
     unsigned short stepszx;

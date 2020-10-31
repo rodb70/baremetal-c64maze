@@ -1,39 +1,24 @@
-PLATFORM?=C64
-TARGET=c64maze
-all: $(TARGET)
+#CPU := c64
+CPU := host
 
-CFLAGS += -I ./ -g -DP_C64=1 -DP_UNIX=2 
-ifeq ($(PLATFORM),C64)
-	#commodore 64 platform
-CC=cc65
-AS=ca65
-LD=ld65
-CFLAGS += -Os -DPLATFORM_MAZE=C64 -DP_CURRENT=P_C64
+CSRC += c64maze.c
+ifeq ($(CPU),c64)
+COMPILER := cc65
 endif
-ifeq ($(PLATFORM),UNIX)
-	#unix platform
-CC=gcc
-AS=as
-LD=ld
-CFLAGS += -DPLATFORM_MAZE=UNIX  -DP_CURRENT=P_UNIX
+ifeq ($(CPU),host)
+COMPILER := gcc
+SHORT_ENUMS := n
 endif
 
+CFLAGS += -I .
 
-$(TARGET): $(TARGET).c ports/$(PLATFORM).c
-ifeq ($(PLATFORM),C64) 
-	$(CC) $(CFLAGS) -Oi -T -t c64 $(TARGET).c 
-	$(AS) $(TARGET).s
-	$(CC) $(CFLAGS) -Oi -T -t c64 ports/$(PLATFORM).c 
-	$(AS) ports/$(PLATFORM).s
-	$(LD) -o $(TARGET) -t c64 $(TARGET).o ports/$(PLATFORM).o c64.lib
-endif
-ifeq ($(PLATFORM),UNIX)
-	$(CC) $(CFLAGS) -o SDL_FontCache.o -c ports/SDL_FontCache/SDL_FontCache.c
-	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c ports/$(PLATFORM).c SDL_FontCache.o -lSDL2 -lSDL2_ttf
-endif
+BLD_TARGET := c64maze
+BLD_TYPE := debug
 
-clean:
-	-rm `find ./ -name *.o`
-	-rm $(TARGET)
-	-rm $(TARGET).s
-	-rm ports/$(PLATFORM).s
+PROJ_DIRS += $(CPU)
+
+include makefiles/main.mk
+
+distclean:
+	rm -rf build
+

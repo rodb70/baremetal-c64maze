@@ -1,3 +1,6 @@
-[submodule "ports/SDL_FontCache"]
-	path = ports/SDL_FontCache
-	url = https://github.com/Igor1101/SDL_FontCache.git
+[submodule "makefiles"]
+	path = makefiles
+	url = https://github.com/rodb70/makefiles.git
+[submodule "host/SDL_FontCache"]
+	path = host/SDL_FontCache
+	url = https://github.com/rodb70/SDL_FontCache.git
